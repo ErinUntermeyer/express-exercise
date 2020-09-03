@@ -23,11 +23,28 @@ app.get('/food/:id', (request, response) => {
 	const food = app.locals.food.find(food => food.id === id)
 	if (!food) {
 		response.status(404).json({
-			errorMessage: `Could not find a food with an id of ${id}`
+			errorMessage: `Cannot find a food with an id of ${id}`
 		})
 	}
 
 	response.status(200).json(food)
+})
+
+app.post('/food', (request, response) => {
+	const requiredProperties = ['type', 'meal']
+	requiredProperties.forEach(property => {
+		if (!request.body[property]) {
+			return response.status(422).json({
+				errorMessage: `Cannot POST: no property of ${property} was found in request`
+			})
+		}
+	})
+
+	const { type, meal } = request.body
+	const id = Date.now()
+
+	app.locals.food.push({ id, type, meal })
+	response.status(201).json({ id, type, meal })
 })
 
 app.listen(app.get('port'), () => {
