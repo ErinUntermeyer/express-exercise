@@ -47,6 +47,25 @@ app.post('/food', (request, response) => {
 	response.status(201).json({ id, type, meal })
 })
 
+app.patch('/food/:id', (request, response) => {
+	const requiredProperties = ['type', 'meal']
+	requiredProperties.forEach(property => {
+		if (!request.body[property]) {
+			return response.status(422).json({
+				errorMessage: `Cannot POST: no property of ${property} was found in request`
+			})
+		}
+	})
+	
+	const { type, meal } = request.body
+	const { id } = request.params
+	const food = app.locals.food.find(food => food.id === id)
+	food.type = type
+	food.meal = meal
+
+	response.status(201).json({ type, meal })
+})
+
 app.listen(app.get('port'), () => {
 	console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`)
 })
