@@ -9,3 +9,7 @@ app.locals.food = [
 	{ id: 2, type: 'pasta', meal: ['lunch', 'dinner'] },
 	{ id: 3, type: 'cereal', meal: ['breakfast'] }
 ]
+
+app.get('/', (request, response) => {
+	response.send('Welcome to my first Express Server')
+})
