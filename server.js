@@ -68,8 +68,6 @@ app.patch('/food/:id', (request, response) => {
 
 app.delete('/food/:id', (request, response) => {
 	const { id } = request.params
-	const food = app.locals.food.find(food => food.id === id)
-
 	app.locals.food = app.locals.food.filter(food => food.id !== id)
 
 	response.sendStatus(204)
