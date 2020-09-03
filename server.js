@@ -11,7 +11,11 @@ app.locals.food = [
 ]
 
 app.get('/', (request, response) => {
-	response.send('Welcome to my first Express Server')
+	response.send('Welcome to my first Express Server - Food Edition')
+})
+
+app.get('/food', (request, response) => {
+	response.status(200).json(app.locals.food)
 })
 
 app.listen(app.get('port'), () => {
