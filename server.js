@@ -56,7 +56,7 @@ app.patch('/food/:id', (request, response) => {
 			})
 		}
 	})
-	
+
 	const { type, meal } = request.body
 	const { id } = request.params
 	const food = app.locals.food.find(food => food.id === id)
@@ -64,6 +64,15 @@ app.patch('/food/:id', (request, response) => {
 	food.meal = meal
 
 	response.status(201).json({ type, meal })
+})
+
+app.delete('/food/:id', (request, response) => {
+	const { id } = request.params
+	const food = app.locals.food.find(food => food.id === id)
+
+	app.locals.food = app.locals.food.filter(food => food.id !== id)
+
+	response.sendStatus(204)
 })
 
 app.listen(app.get('port'), () => {
