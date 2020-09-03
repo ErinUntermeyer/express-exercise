@@ -4,6 +4,13 @@ Now that you've spent some time playing around with Express, we would like you t
 
 ---
 
+## Set Up:
+- Clone down the repo
+- `cd` into the directory and run `npm install` in your termnal
+- If you have `nodemon` installed already, run `nodemon server.js` in your terminal and navgiate to http://localhost:3000
+- If not, and you'd like to install it globally, run `npm i -g nodemon` in your terminal before running `nodemon server.js`
+- You can also run `node server.js` in your terminal and navgiate to http://localhost:3000
+
 ### Base Expectations:
 
 #### Create a Data Source
